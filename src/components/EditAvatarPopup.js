@@ -29,11 +29,11 @@ function EditAvatarPopup(props) {
                    onSubmit={handleSubmit}
                    isLoading={props.isLoading}
                    buttonText="Сохранить" >
-      <input id="url-input-avatar" className="popup__input popup__input_type_link"
+      <input id="url-input-avatar" className="form__input popup__input_type_link"
              type="url" name="link" required
              placeholder="Ссылка на картинку"
              ref={inputAvatarRef} onChange={handleChange} />
-      <span className="popup__input-error url-input-avatar-error"></span>
+      <span className="form__input-error url-input-avatar-error"></span>
     </PopupWithForm>
   );
 }

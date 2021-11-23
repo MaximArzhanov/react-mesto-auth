@@ -14,6 +14,8 @@
 
 /*  content  */
 @import url("./blocks/content/content.css");
+@import url("./blocks/content/_type/content_type_form.css");
+@import url("./blocks/content/__title/content__title.css");
 
 /*  profile  */
 @import url("./blocks/profile/profile.css");
@@ -65,6 +67,20 @@
 @import url("./blocks/popup/__container-image/popup__container-image.css");
 @import url("./blocks/popup/__image/popup__image.css");
 @import url("./blocks/popup/__image-title/popup__image-title.css");
+
+/*  log-in (Окно входа в систему) */
+@import url("./blocks/log-in/log-in.css");
+@import url("./blocks/log-in/__title/log-in__title.css");
+@import url("./blocks/log-in/__form/log-in__form.css");
+@import url("./blocks/log-in/__input/log-in__input.css");
+
+/* form */
+@import url("./blocks/form/form.css");
+@import url("./blocks/form/__input/form__input.css");
+@import url("./blocks/form/__input/_type/form__input_type_black.css");
+@import url("./blocks/form/__input-error/form__input-error.css");
+@import url("./blocks/form/__button/form__button.css");
+@import url("./blocks/form/__button/_type/form__button_type_white.css");
 
 /*  миксы  */
 @import url("./blocks/root/__page/root__page.css");
