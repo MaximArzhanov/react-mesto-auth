@@ -6,7 +6,7 @@ function Register(props) {
 
 
   return (
-    <LoginRegisterForm title="Регистрация" textButton="Зарегистрироваться">
+    <LoginRegisterForm title="Регистрация" textButton="Зарегистрироваться" onSubmit={props.onSubmit} >
       <Link to="/sign-in" className="link link_type_small">
         Уже зарегистрированы? Войти
       </Link>

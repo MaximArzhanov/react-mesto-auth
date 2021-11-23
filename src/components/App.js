@@ -10,6 +10,7 @@ import ConfirmationPopup from './ConfirmationPopup'
 import ImagePopup from './ImagePopup'
 import Register from './Register';
 import Login from './Login';
+import InfoToolTip from './InfoToolTip';
 import api from '../utils/Api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -30,6 +31,7 @@ function App() {
   const [isAddPlacePopupOpen, SetIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, SetIsEditAvatarPopupOpen] = React.useState(false);
   const [isConfirmationPopupOpen, SetIsConfirmationPopupOpen] = React.useState(false);
+  const [isRegistationResultPopupOpen, SetIsRegistationResultPopupOpen] = React.useState(false);
 
   const [selectedCard, SetSelectedCard] = React.useState({});
 
@@ -62,12 +64,18 @@ function App() {
     SetSelectedCard(card);
   }
 
+  /** Открывает окно с результатом регистрации */
+  function handleRegistration(card) {
+    SetIsRegistationResultPopupOpen(true);
+  }
+
   /** Закрывает все модальные окна */
   function closeAllPopups() {
     SetIsEditProfilePopupOpen(false);
     SetIsAddPlacePopupOpen(false);
     SetIsEditAvatarPopupOpen(false);
     SetIsConfirmationPopupOpen(false);
+    SetIsRegistationResultPopupOpen(false);
     SetSelectedCard({});
   }
 
@@ -187,7 +195,7 @@ function App() {
                 }
               />
               <Route path="sign-in" element={<Login />} />
-              <Route path="sign-up" element={<Register />} />
+              <Route path="sign-up" element={<Register onSubmit={handleRegistration} />} />
             
           </Routes>
           <Footer />
@@ -207,6 +215,11 @@ function App() {
                                    isLoading={isLoading}
                                    card={card} />
         <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+
+        <InfoToolTip isOpen={isRegistationResultPopupOpen}
+                     name="info-tool-tip"
+                     onClose={closeAllPopups} 
+                     onUpdateAvatar={handleRegistration} />
 
       </CurrentUserContext.Provider>
 

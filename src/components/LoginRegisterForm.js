@@ -2,11 +2,16 @@ import React from 'react';
 
 function LoginRegisterForm(props) {
   const { title, textButton } = props;
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onSubmit();
+  }
 
   return (
     <div className="content content_type_form">
       <h2 className="content__title">{title}</h2>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <input id="name-user-input" className="form__input form__input_type_black"
                type="text" name="name" required minLength="2" maxLength="40"
                placeholder="Имя пользователя" />

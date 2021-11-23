@@ -8,7 +8,7 @@ function Header(props) {
     <header className="header">
       <a href="#" className="header__logo"></a>
       <Link to="/sign-in" className="link link_type_small">
-        Уже зарегистрированы? Войти
+        Войти
       </Link>
     </header>
   );
