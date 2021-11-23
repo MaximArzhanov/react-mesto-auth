@@ -1,7 +1,7 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-const Chat = React.memo(({ onCardClick, onCardLike, card, onConfirmation }) => {
+const Card = React.memo(({ onCardClick, onCardLike, card, onConfirmation }) => {
 
     /** Подписка на контекст CurrentUserContext */
     const currentUser = React.useContext(CurrentUserContext);
@@ -58,4 +58,4 @@ const Chat = React.memo(({ onCardClick, onCardLike, card, onConfirmation }) => {
   }
 ); 
 
-export default Chat;
+export default Card;

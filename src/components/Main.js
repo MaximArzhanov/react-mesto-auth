@@ -32,7 +32,7 @@ function Main(props) {
           { 
             props.isLoading ? 
             "" :
-            props.cards.map(({ key, ...card }) => (
+            props.cards.map(({...card }) => (
                 <Card onCardClick={props.onCardClick}
                       key={card._id}
                       card={{...card}}

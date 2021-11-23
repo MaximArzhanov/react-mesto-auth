@@ -1,5 +1,5 @@
 import React from 'react';
-import '../index.css';
+import { Routes, Route } from 'react-router';
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -8,8 +8,12 @@ import EditAvatarPopup from './EditAvatarPopup'
 import AddPlacePopup from './AddPlacePopup'
 import ConfirmationPopup from './ConfirmationPopup'
 import ImagePopup from './ImagePopup'
+import Register from './Register';
+import Login from './Login';
 import api from '../utils/Api'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
+import '../index.css';
 
 function App() {
 
@@ -169,7 +173,9 @@ function App() {
 
         <div className="page root__page">
           <Header />
-          <Main onEditProfile={handleEditProfileClick}
+          <Routes>
+            <Route exact path="/" element={
+                <Main onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
                 onEditAvatar={handleEditAvatarClick}
                 onConfirmation={handleConfirmationClick}
@@ -177,8 +183,14 @@ function App() {
                 cards={cards}
                 onCardLike={handleCardLike}
                 isLoading={isLoading} />
+              }
+            />
+            <Route path="sign-in" element={<Login />} />
+            <Route path="sign-up" element={<Register />} />
+          </Routes>
           <Footer />
         </div>
+        
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}
                           onUpdateUser={handleUpdateUser}
                           isLoading={isLoading} />
