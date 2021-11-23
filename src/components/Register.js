@@ -5,7 +5,8 @@ function Register(props) {
 
 
   return (
-    <div>
+    <div className="content" style={{backgroundColor: '#00ff00'}}>
+      Регистрация
     </div>
   );
 }

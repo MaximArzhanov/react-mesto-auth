@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Switch } from 'react-router';
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -174,19 +174,21 @@ function App() {
         <div className="page root__page">
           <Header />
           <Routes>
-            <Route exact path="/" element={
-                <Main onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onEditAvatar={handleEditAvatarClick}
-                onConfirmation={handleConfirmationClick}
-                onCardClick={handleCardClick}
-                cards={cards}
-                onCardLike={handleCardLike}
-                isLoading={isLoading} />
-              }
-            />
-            <Route path="sign-in" element={<Login />} />
-            <Route path="sign-up" element={<Register />} />
+            
+              <Route exact path="/" element={
+                  <Main onEditProfile={handleEditProfileClick}
+                        onAddPlace={handleAddPlaceClick}
+                        onEditAvatar={handleEditAvatarClick}
+                        onConfirmation={handleConfirmationClick}
+                        onCardClick={handleCardClick}
+                        cards={cards}
+                        onCardLike={handleCardLike}
+                        isLoading={isLoading} />
+                }
+              />
+              <Route path="sign-in" element={<Login />} />
+              <Route path="sign-up" element={<Register />} />
+            
           </Routes>
           <Footer />
         </div>
