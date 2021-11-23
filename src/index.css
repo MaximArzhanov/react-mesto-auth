@@ -68,12 +68,6 @@
 @import url("./blocks/popup/__image/popup__image.css");
 @import url("./blocks/popup/__image-title/popup__image-title.css");
 
-/*  log-in (Окно входа в систему) */
-@import url("./blocks/log-in/log-in.css");
-@import url("./blocks/log-in/__title/log-in__title.css");
-@import url("./blocks/log-in/__form/log-in__form.css");
-@import url("./blocks/log-in/__input/log-in__input.css");
-
 /* form */
 @import url("./blocks/form/form.css");
 @import url("./blocks/form/__input/form__input.css");
@@ -81,6 +75,10 @@
 @import url("./blocks/form/__input-error/form__input-error.css");
 @import url("./blocks/form/__button/form__button.css");
 @import url("./blocks/form/__button/_type/form__button_type_white.css");
+
+/* link */
+@import url("./blocks/link/link.css");
+@import url("./blocks/link/_type/link_type_small.css");
 
 /*  миксы  */
 @import url("./blocks/root/__page/root__page.css");
