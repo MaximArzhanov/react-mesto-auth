@@ -12,13 +12,13 @@ function LoginRegisterForm(props) {
     <div className="content content_type_form">
       <h2 className="content__title">{title}</h2>
       <form className="form" onSubmit={handleSubmit}>
-        <input id="name-user-input" className="form__input form__input_type_black"
-               type="text" name="name" required minLength="2" maxLength="40"
-               placeholder="Имя пользователя" />
+        <input id="email-input" className="form__input form__input_type_black"
+               type="email" name="email" required
+               placeholder="Email" />
         <span className="form__input-error name-user-input-error"></span>
-        <input id="description-input" className="form__input form__input_type_black"
-               type="text" name="description" required minLength="2" maxLength="200"
-               placeholder="Информация о пользователе" />
+        <input id="password-input" className="form__input form__input_type_black"
+               type="password" name="password" required minLength="2" maxLength="200"
+               placeholder="Пароль" />
         <span className="form__input-error description-input-error"></span>
         <button className="form__button form__button_type_white" type="submit">
           {textButton}

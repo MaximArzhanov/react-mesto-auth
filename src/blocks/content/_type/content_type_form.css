@@ -9,3 +9,10 @@
     justify-self: center;
     background: rgba(0, 0, 0, 1);
 }
+
+@media screen and (max-width: 767px) {
+    .content_type_form {
+      width: 282px;
+      padding: 0;
+    }
+}
