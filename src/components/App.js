@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -17,6 +17,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import '../index.css';
 
 function App() {
+
+  const [loggedIn, SetLoggedIn] = React.useState(false);
 
   /** Текущий пользователь */
   const [currentUser, SetCurrentUser] = React.useState({});
@@ -182,21 +184,22 @@ function App() {
         <div className="page root__page">
           <Header />
           <Routes>
-            
-              <Route exact path="/" element={
-                  <Main onEditProfile={handleEditProfileClick}
-                        onAddPlace={handleAddPlaceClick}
-                        onEditAvatar={handleEditAvatarClick}
-                        onConfirmation={handleConfirmationClick}
-                        onCardClick={handleCardClick}
-                        cards={cards}
-                        onCardLike={handleCardLike}
-                        isLoading={isLoading} />
-                }
-              />
               <Route path="sign-in" element={<Login />} />
               <Route path="sign-up" element={<Register onSubmit={handleRegistration} />} />
-            
+              <Route path="/" element={
+                  loggedIn ? 
+                    <Main onEditProfile={handleEditProfileClick}
+                          onAddPlace={handleAddPlaceClick}
+                          onEditAvatar={handleEditAvatarClick}
+                          onConfirmation={handleConfirmationClick}
+                          onCardClick={handleCardClick}
+                          cards={cards}
+                          onCardLike={handleCardLike}
+                          isLoading={isLoading}
+                    />  :
+                    <Navigate to="sign-in" />
+                }
+              />
           </Routes>
           <Footer />
         </div>
