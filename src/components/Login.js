@@ -15,6 +15,7 @@ function Login(props) {
     auth.authorization(password, email)
       .then((data) => {
         props.onLogin(true);
+        props.SetUserEmail(email);
         navigate('/');
         localStorage.setItem('jwt', data.token);
       })

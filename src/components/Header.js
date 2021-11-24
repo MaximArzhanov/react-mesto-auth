@@ -11,10 +11,13 @@ function Header(props) {
 
   return (
     <header className="header">
-      <a href="#" className="header__logo"></a>
-      <Link to={linkRoute} className="link header__link" onClick={SignOut}>
-        {linkName}
-      </Link>
+      <Link to="/" className="header__logo"></Link>
+      <div className="header__container">
+        <p className="header__email">{ props.isLoggedIn && props.userEmail }</p>
+        <Link to={linkRoute} className="link header__link" onClick={SignOut}>
+          {linkName}
+        </Link>
+      </div>
     </header>
   );
 }

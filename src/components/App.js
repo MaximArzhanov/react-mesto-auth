@@ -19,6 +19,9 @@ import '../index.css';
 
 function App() {
 
+  /** Email пользователя */
+  const [userEmail, SetUserEmail] = React.useState("");
+
   const navigate = useNavigate(); 
 
   /** Имя ссылки (для Header) */
@@ -58,6 +61,10 @@ function App() {
   /** Массив загруженных карточек */
   const [cards, SetCards] = React.useState([]);
 
+  function handleSetUserEmail(email) {
+    SetUserEmail(email);
+  }
+
   /** Проверяет наличие токена */
   function tokenCheck() {
     if (localStorage.getItem('jwt')){
@@ -65,6 +72,7 @@ function App() {
       auth.checkToken(jwt)
         .then((data) => {
           SetLoggedIn(true);
+          handleSetUserEmail(data.data.email)
           navigate('/');
         })
         .catch((err) => {
@@ -235,12 +243,15 @@ function App() {
         <div className="page root__page">
           <Header linkName={linkName}
                   linkRoute={linkRoute}
-                  signOut={handleSignOutClick}/>
+                  signOut={handleSignOutClick}
+                  isLoggedIn={loggedIn}
+                  userEmail={userEmail} />
           <Routes>
               <Route path="/sign-in" 
                      element={<Login
                                 onPage={onPage} 
-                                onLogin={handleAuthorization} />}
+                                onLogin={handleAuthorization}
+                                SetUserEmail={SetUserEmail} />}
               />
               <Route path="/sign-up"
                      element={<Register 
