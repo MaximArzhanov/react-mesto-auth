@@ -71,12 +71,19 @@ function App() {
           console.error(err);
         })
     }
-  } 
+  }
 
   /** Эффект при загрузке приложения */
   React.useEffect(() => {
     tokenCheck();
   }, []);
+
+  /** Выходит из аккаунта. Удаляет токен */
+  function handleSignOutClick() {
+    navigate('/sign-in');
+    localStorage.removeItem('jwt');
+    SetLoggedIn(false);
+  }
 
   /** Открывает окно редактирования профиля */
   function handleEditProfileClick() {
@@ -226,7 +233,9 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
 
         <div className="page root__page">
-          <Header linkName={linkName} linkRoute={linkRoute} />
+          <Header linkName={linkName}
+                  linkRoute={linkRoute}
+                  signOut={handleSignOutClick}/>
           <Routes>
               <Route path="/sign-in" 
                      element={<Login
@@ -249,7 +258,7 @@ function App() {
                           cards={cards}
                           onCardLike={handleCardLike}
                           isLoading={isLoading}
-                          onPage={onPage} 
+                          onPage={onPage}
                     />  :
                     <Navigate to="/sign-in" />
                 }
