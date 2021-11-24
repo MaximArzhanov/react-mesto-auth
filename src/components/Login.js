@@ -16,7 +16,7 @@ function Login(props) {
       .then((data) => {
         props.onLogin(true);
         navigate('/');
-        console.log(data);
+        localStorage.setItem('jwt', data.token);
       })
       .catch((err) => {
         console.error(err);

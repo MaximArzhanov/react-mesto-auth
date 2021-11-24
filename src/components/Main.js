@@ -4,6 +4,9 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
 
+  /** Записывает имя и адрес ссылки в стейт-переменные */
+  props.onPage("Выйти", "/sign-in");
+
   /** Подписка на контекст CurrentUserContext */
   const currentUser = React.useContext(CurrentUserContext);
 

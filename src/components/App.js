@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
@@ -18,6 +18,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import '../index.css';
 
 function App() {
+
+  const navigate = useNavigate(); 
 
   /** Имя ссылки (для Header) */
   const [linkName, SetLinkName] = React.useState("");
@@ -55,6 +57,26 @@ function App() {
 
   /** Массив загруженных карточек */
   const [cards, SetCards] = React.useState([]);
+
+  /** Проверяет наличие токена */
+  function tokenCheck() {
+    if (localStorage.getItem('jwt')){
+      const jwt = localStorage.getItem('jwt');
+      auth.checkToken(jwt)
+        .then((data) => {
+          SetLoggedIn(true);
+          navigate('/');
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+    }
+  } 
+
+  /** Эффект при загрузке приложения */
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
 
   /** Открывает окно редактирования профиля */
   function handleEditProfileClick() {
@@ -198,10 +220,6 @@ function App() {
       })
   }
 
-
-
-
-
   return (
     <div className="root">
 
@@ -231,6 +249,7 @@ function App() {
                           cards={cards}
                           onCardLike={handleCardLike}
                           isLoading={isLoading}
+                          onPage={onPage} 
                     />  :
                     <Navigate to="/sign-in" />
                 }
