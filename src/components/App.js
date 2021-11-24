@@ -12,19 +12,35 @@ import Register from './Register';
 import Login from './Login';
 import InfoToolTip from './InfoToolTip';
 import api from '../utils/Api'
+import auth from '../utils/Auth';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import '../index.css';
 
 function App() {
 
-  const [loggedIn, SetLoggedIn] = React.useState(false);
+  /** Имя ссылки (для Header) */
+  const [linkName, SetLinkName] = React.useState("");
+  /** Адрес ссылки (для Header) */
+  const [linkRoute, SetLinkRoute] = React.useState("");
+
+  /** Записывает имя и адрес ссылки в стейт-переменные */
+  function onPage(name, route) {
+    SetLinkName(name);
+    SetLinkRoute(route);
+  }
 
   /** Текущий пользователь */
   const [currentUser, SetCurrentUser] = React.useState({});
 
   /** Состояние загрузки */
   const [isLoading, SetIsLoading] = React.useState(false);
+
+  /** Состояние регистрации */
+  const [isRegistrationSuccsses, SetIsRegistrationSuccsses] = React.useState(false);
+
+  /** Состояние авторизации */
+  const [loggedIn, SetLoggedIn] = React.useState(false);
 
   /** Карточка (Для удаления) */
   const [card, SetCard] = React.useState({});
@@ -67,8 +83,14 @@ function App() {
   }
 
   /** Открывает окно с результатом регистрации */
-  function handleRegistration(card) {
+  function handleRegistration(isSuccsses) {
+    SetIsRegistrationSuccsses(isSuccsses);
     SetIsRegistationResultPopupOpen(true);
+  }
+
+  /** Обновляет стейт-переменную loggedIn */
+  function handleAuthorization(isSuccsses) {
+    SetLoggedIn(isSuccsses);
   }
 
   /** Закрывает все модальные окна */
@@ -174,7 +196,11 @@ function App() {
       .catch((err) => {
         console.error(err);
       })
-  } 
+  }
+
+
+
+
 
   return (
     <div className="root">
@@ -182,11 +208,20 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
 
         <div className="page root__page">
-          <Header />
+          <Header linkName={linkName} linkRoute={linkRoute} />
           <Routes>
-              <Route path="sign-in" element={<Login />} />
-              <Route path="sign-up" element={<Register onSubmit={handleRegistration} />} />
-              <Route path="/" element={
+              <Route path="/sign-in" 
+                     element={<Login
+                                onPage={onPage} 
+                                onLogin={handleAuthorization} />}
+              />
+              <Route path="/sign-up"
+                     element={<Register 
+                                onPage={onPage}
+                                onRegister={handleRegistration}
+                              />}
+              />
+              <Route exact path="/" element={
                   loggedIn ? 
                     <Main onEditProfile={handleEditProfileClick}
                           onAddPlace={handleAddPlaceClick}
@@ -197,7 +232,7 @@ function App() {
                           onCardLike={handleCardLike}
                           isLoading={isLoading}
                     />  :
-                    <Navigate to="sign-in" />
+                    <Navigate to="/sign-in" />
                 }
               />
           </Routes>
@@ -222,7 +257,8 @@ function App() {
         <InfoToolTip isOpen={isRegistationResultPopupOpen}
                      name="info-tool-tip"
                      onClose={closeAllPopups} 
-                     onUpdateAvatar={handleRegistration} />
+                     onUpdateAvatar={handleRegistration}
+                     isRegistrationSuccsses={isRegistrationSuccsses} />
 
       </CurrentUserContext.Provider>
 

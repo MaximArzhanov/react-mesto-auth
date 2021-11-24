@@ -3,25 +3,23 @@ import React from 'react';
 function LoginRegisterForm(props) {
 
   const { title, textButton } = props;
-  
-  const [email, SetEmail] = React.useState('');
-  const [password, SetPassword] = React.useState('');
+
+  const [password, SetPassword] = React.useState("");
+  const [email, SetEmail] = React.useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onSubmit();
-  }
-
-  /** Записывает email пользователя в стейт-переменную */
-  function handleChangeEmail(e) {
-    SetEmail(e.target.value);
-    console.log(email);
+    props.onSubmit(password, email);
   }
 
   /** Записывает пароль пользователя в стейт-переменную */
   function handleChangePassword(e) {
     SetPassword(e.target.value);
-    console.log(password);
+  }
+
+  /** Записывает email пользователя в стейт-переменную */
+  function handleChangeEmail(e) {
+    SetEmail(e.target.value);
   }
 
   return (
