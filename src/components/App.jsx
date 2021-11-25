@@ -243,16 +243,15 @@ function App() {
       });
   }
 
+  /** Закрывает модальное окно при нажатии кнопки Escape */
   React.useEffect(() => {
     const closeByEscape = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         closeAllPopups();
       }
     }
-
-    document.addEventListener('keydown', closeByEscape);
-
-    return () => document.removeEventListener('keydown', closeByEscape);
+    document.addEventListener("keydown", closeByEscape);
+    return () => document.removeEventListener("keydown", closeByEscape);
   }, [])
 
   return (
