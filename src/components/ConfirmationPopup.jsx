@@ -10,13 +10,15 @@ function ConfirmationPopup(props) {
   }
 
   return (
-    <PopupWithForm title="Вы уверены?" name="confirmation"
-                   isOpen={props.isOpen}
-                   onClose={props.onClose}
-                   onSubmit={handleSubmit}
-                   isLoading={props.isLoading}
-                   buttonText="Да" >
-    </PopupWithForm>
+    <PopupWithForm
+      title="Вы уверены?"
+      name="confirmation"
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      onSubmit={handleSubmit}
+      isLoading={props.isLoading}
+      buttonText="Да"
+    ></PopupWithForm>
   );
 }
 
