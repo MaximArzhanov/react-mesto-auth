@@ -253,7 +253,6 @@ function App() {
   function handleUserRegister(password, email) {
     auth.register(password, email)
       .then((data) => {
-        console.log(data);
         navigate('/sign-in');
         handleRegistration(true);
       })
