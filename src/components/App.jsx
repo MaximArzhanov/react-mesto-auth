@@ -18,6 +18,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import "../index.css";
 
 function App() {
+
   /** Email пользователя */
   const [userEmail, setUserEmail] = React.useState("");
 
@@ -253,7 +254,6 @@ function App() {
   function handleUserRegister(password, email) {
     auth.register(password, email)
       .then((data) => {
-        console.log(data);
         navigate('/sign-in');
         handleRegistration(true);
       })
