@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -13,6 +13,7 @@ import Login from "./Login";
 import InfoToolTip from "./InfoToolTip";
 import api from "../utils/Api";
 import auth from "../utils/Auth";
+import ProtectedRoute from "./ProtectedRoute";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 import "../index.css";
@@ -309,24 +310,21 @@ function App() {
               }
             />
             <Route
-              exact
               path="/"
               element={
-                loggedIn ? (
-                  <Main
-                    onEditProfile={handleEditProfileClick}
-                    onAddPlace={handleAddPlaceClick}
-                    onEditAvatar={handleEditAvatarClick}
-                    onConfirmation={handleConfirmationClick}
-                    onCardClick={handleCardClick}
-                    cards={cards}
-                    onCardLike={handleCardLike}
-                    isLoading={isLoading}
-                    onPage={onPage}
-                  />
-                ) : (
-                  <Navigate to="/sign-in" />
-                )
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  component={Main}
+                  onEditProfile={handleEditProfileClick}
+                  onAddPlace={handleAddPlaceClick}
+                  onEditAvatar={handleEditAvatarClick}
+                  onConfirmation={handleConfirmationClick}
+                  onCardClick={handleCardClick}
+                  cards={cards}
+                  onCardLike={handleCardLike}
+                  isLoading={isLoading}
+                  onPage={onPage}
+                />
               }
             />
           </Routes>
