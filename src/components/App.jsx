@@ -73,8 +73,7 @@ function App() {
   function tokenCheck() {
     if (localStorage.getItem("jwt")) {
       const jwt = localStorage.getItem("jwt");
-      auth
-        .checkToken(jwt)
+      auth.checkToken(jwt)
         .then((data) => {
           setLoggedIn(true);
           handleSetUserEmail(data.data.email);
@@ -164,8 +163,7 @@ function App() {
   /** Обновляет информацию о пользователе */
   function handleUpdateUser({ name, about }) {
     setIsLoading(true);
-    api
-      .updateUserInformation(name, about)
+    api.updateUserInformation(name, about)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -181,8 +179,7 @@ function App() {
   /** Обновляет аватарку пользователя */
   function handleUpdateAvatar({ avatar }) {
     setIsLoading(true);
-    api
-      .updateUserAvatar(avatar)
+    api.updateUserAvatar(avatar)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -198,8 +195,7 @@ function App() {
   /** Добавляет новую карточку */
   function handleAddPlaceSubmit({ name, link }) {
     setIsLoading(true);
-    api
-      .addCard(name, link)
+    api.addCard(name, link)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
@@ -215,8 +211,7 @@ function App() {
   /** Удаляет карточку  */
   function handleCardDeleteSubmit(card) {
     setIsLoading(true);
-    api
-      .deleteCard(card._id)
+    api.deleteCard(card._id)
       .then((data) => {
         setCards((state) =>
           state.filter((c) => {
@@ -237,8 +232,7 @@ function App() {
    *   Ставит/удаляет лайк   */
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api
-      .changeLikeCardStatus(card._id, !isLiked)
+    api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
@@ -248,6 +242,18 @@ function App() {
         console.error(err);
       });
   }
+
+  React.useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+
+    document.addEventListener('keydown', closeByEscape);
+
+    return () => document.removeEventListener('keydown', closeByEscape);
+  }, [])
 
   return (
     <div className="root">
