@@ -1,5 +1,5 @@
 import React from "react";
-import LoginRegisterForm from "./LoginRegisterForm";
+import AuthPage from "./AuthPage";
 
 function Login(props) {
 
@@ -9,7 +9,7 @@ function Login(props) {
   }, []);
 
   return (
-    <LoginRegisterForm
+    <AuthPage
       title="Вход"
       textButton="Войти"
       onSubmit={props.onSubmit}
