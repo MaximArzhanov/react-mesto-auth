@@ -129,11 +129,6 @@ function App() {
     setIsRegistationResultPopupOpen(true);
   }
 
-  /** Обновляет стейт-переменную loggedIn */
-  function handleAuthorization(isSuccsses) {
-    setLoggedIn(isSuccsses);
-  }
-
   /** Закрывает все модальные окна */
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -254,6 +249,34 @@ function App() {
     return () => document.removeEventListener("keydown", closeByEscape);
   }, [])
 
+  /** Обработчик регистрации пользователя */
+  function handleUserRegister(password, email) {
+    auth.register(password, email)
+      .then((data) => {
+        console.log(data);
+        navigate('/sign-in');
+        handleRegistration(true);
+      })
+      .catch((err) => {
+        console.error(err);
+        handleRegistration(false);
+      })
+  }
+
+  /** Обработчик авторизации пользователя */
+  function handleUserAuthorization(password, email) {
+    auth.authorization(password, email)
+      .then((data) => {
+        setLoggedIn(true);
+        setUserEmail(email);
+        navigate("/");
+        localStorage.setItem("jwt", data.token);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   return (
     <div className="root">
       <CurrentUserContext.Provider value={currentUser}>
@@ -271,7 +294,7 @@ function App() {
               element={
                 <Login
                   onPage={onPage}
-                  onLogin={handleAuthorization}
+                  onSubmit={handleUserAuthorization}
                   setUserEmail={setUserEmail}
                 />
               }
@@ -279,7 +302,10 @@ function App() {
             <Route
               path="/sign-up"
               element={
-                <Register onPage={onPage} onRegister={handleRegistration} />
+                <Register 
+                  onPage={onPage} 
+                  onSubmit={handleUserRegister}
+                />
               }
             />
             <Route
