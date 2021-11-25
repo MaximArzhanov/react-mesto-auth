@@ -5,6 +5,13 @@ class Auth {
       this._baseUrlAuth = baseUrlAuth;
     }
 
+    _checkResponse(res) {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+
     register(password, email) {
       return fetch(`${this._baseUrlAuth}signup`, {
         method: 'POST',
@@ -16,12 +23,7 @@ class Auth {
           email: email
         })
       })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
+      .then(this._checkResponse)
     };
 
     authorization(password, email) {
@@ -35,12 +37,7 @@ class Auth {
           email: email
         })
       })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
+      .then(this._checkResponse)
     };
 
     checkToken(jwt) {
@@ -51,12 +48,7 @@ class Auth {
           "Authorization" : `Bearer ${jwt}`
         }
       })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
+      .then(this._checkResponse)
     };
 }
 
