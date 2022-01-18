@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/react-mesto-auth/static/css/main.cf4588db.chunk.css",
-    "main.js": "/react-mesto-auth/static/js/main.b55949d0.chunk.js",
-    "main.js.map": "/react-mesto-auth/static/js/main.b55949d0.chunk.js.map",
-    "runtime-main.js": "/react-mesto-auth/static/js/runtime-main.f0d63a7f.js",
-    "runtime-main.js.map": "/react-mesto-auth/static/js/runtime-main.f0d63a7f.js.map",
-    "static/js/2.5cea09bf.chunk.js": "/react-mesto-auth/static/js/2.5cea09bf.chunk.js",
-    "static/js/2.5cea09bf.chunk.js.map": "/react-mesto-auth/static/js/2.5cea09bf.chunk.js.map",
-    "static/js/3.d3b2b51c.chunk.js": "/react-mesto-auth/static/js/3.d3b2b51c.chunk.js",
-    "static/js/3.d3b2b51c.chunk.js.map": "/react-mesto-auth/static/js/3.d3b2b51c.chunk.js.map",
-    "index.html": "/react-mesto-auth/index.html",
-    "static/css/main.cf4588db.chunk.css.map": "/react-mesto-auth/static/css/main.cf4588db.chunk.css.map",
-    "static/js/2.5cea09bf.chunk.js.LICENSE.txt": "/react-mesto-auth/static/js/2.5cea09bf.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/react-mesto-auth/static/media/trash.cbc09a89.svg"
+    "main.css": "./static/css/main.55b7ae2c.chunk.css",
+    "main.js": "./static/js/main.c424c07e.chunk.js",
+    "main.js.map": "./static/js/main.c424c07e.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.15207562.js",
+    "runtime-main.js.map": "./static/js/runtime-main.15207562.js.map",
+    "static/js/2.6d2231e0.chunk.js": "./static/js/2.6d2231e0.chunk.js",
+    "static/js/2.6d2231e0.chunk.js.map": "./static/js/2.6d2231e0.chunk.js.map",
+    "static/js/3.c568d403.chunk.js": "./static/js/3.c568d403.chunk.js",
+    "static/js/3.c568d403.chunk.js.map": "./static/js/3.c568d403.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.55b7ae2c.chunk.css.map": "./static/css/main.55b7ae2c.chunk.css.map",
+    "static/js/2.6d2231e0.chunk.js.LICENSE.txt": "./static/js/2.6d2231e0.chunk.js.LICENSE.txt",
+    "static/media/index.css": "./static/media/trash.cbc09a89.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f0d63a7f.js",
-    "static/js/2.5cea09bf.chunk.js",
-    "static/css/main.cf4588db.chunk.css",
-    "static/js/main.b55949d0.chunk.js"
+    "static/js/runtime-main.15207562.js",
+    "static/js/2.6d2231e0.chunk.js",
+    "static/css/main.55b7ae2c.chunk.css",
+    "static/js/main.c424c07e.chunk.js"
   ]
 }
